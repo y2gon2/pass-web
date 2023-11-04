@@ -38,7 +38,7 @@ public class PassEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PassStatus passStatus;
+    private PassStatus status;
 
     private Integer remainingCount;
 
@@ -57,7 +57,7 @@ public class PassEntity extends BaseEntity {
     private PassEntity(
             PackageEntity packageEntity,
             UserEntity userEntity,
-            PassStatus passStatus,
+            PassStatus status,
             Integer remainingCount,
             LocalDateTime startedAt,
             LocalDateTime endedAt,
@@ -67,7 +67,7 @@ public class PassEntity extends BaseEntity {
         this.packageSeq = packageEntity.getPackageSeq();
         this.userEntity = userEntity;
         this.userId = userEntity.getUserId();
-        this.passStatus = passStatus;
+        this.status = status;
         this.remainingCount = remainingCount;
         this.startedAt = startedAt;
         this.endedAt = endedAt;
@@ -77,13 +77,13 @@ public class PassEntity extends BaseEntity {
     public static PassEntity of(
             PackageEntity packageEntity,
             UserEntity userEntity,
-            PassStatus passStatus,
+            PassStatus status,
             LocalDateTime startedAt
     ) {
         return new PassEntity(
                 packageEntity,
                 userEntity,
-                passStatus,
+                status,
                 null,
                 startedAt,
                 null,

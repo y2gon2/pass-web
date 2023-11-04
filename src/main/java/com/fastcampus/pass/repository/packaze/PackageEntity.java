@@ -19,7 +19,7 @@ public class PackageEntity extends BaseEntity {
     private Integer packageSeq;
 
     @Column(nullable = false)
-    private String PackageName;
+    private String packageName;
 
     private Integer count;
     private Integer period;
@@ -31,7 +31,7 @@ public class PackageEntity extends BaseEntity {
             Integer count,
             Integer period
     ) {
-        PackageName = packageName;
+        this.packageName = packageName;
         this.count = count;
         this.period = period;
     }
