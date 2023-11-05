@@ -12,6 +12,6 @@ public record ChartData(
             List<Long> attendedCounts,
             List<Long> cancelledCounts
     ) {
-        return new ChartData(labels, cancelledCounts, cancelledCounts);
+        return new ChartData(labels, attendedCounts, cancelledCounts);
     }
 }
