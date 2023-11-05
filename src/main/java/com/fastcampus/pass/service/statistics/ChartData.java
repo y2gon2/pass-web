@@ -14,4 +14,19 @@ public record ChartData(
     ) {
         return new ChartData(labels, attendedCounts, cancelledCounts);
     }
+
+    @Override
+    public List<String> labels() {
+        return labels;
+    }
+
+    @Override
+    public List<Long> attendedCounts() {
+        return attendedCounts;
+    }
+
+    @Override
+    public List<Long> cancelledCounts() {
+        return cancelledCounts;
+    }
 }
