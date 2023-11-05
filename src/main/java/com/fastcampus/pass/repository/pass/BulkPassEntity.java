@@ -34,12 +34,11 @@ public class BulkPassEntity extends BaseEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private BulkPassStatus bulkPassStatus;
+    private BulkPassStatus status;
 
     private Integer count;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(nullable = false)
     private LocalDateTime startedAt;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -56,12 +55,12 @@ public class BulkPassEntity extends BaseEntity {
         this.endedAt = endedAt;
     }
 
-    protected BulkPassEntity() {}
+    public BulkPassEntity() {}
 
     private BulkPassEntity(
             PackageEntity packageEntity,
             String userGroupId,
-            BulkPassStatus bulkPassStatus,
+            BulkPassStatus status,
             Integer count,
             LocalDateTime startedAt,
             LocalDateTime endedAt
@@ -69,7 +68,7 @@ public class BulkPassEntity extends BaseEntity {
         this.packageEntity = packageEntity;
         this.packageSeq = packageEntity.getPackageSeq();
         this.userGroupId = userGroupId;
-        this.bulkPassStatus = bulkPassStatus;
+        this.status = status;
         this.count = count;
         this.startedAt = startedAt;
         this.endedAt = endedAt;
@@ -78,16 +77,35 @@ public class BulkPassEntity extends BaseEntity {
     public static BulkPassEntity of(
             PackageEntity packageEntity,
             String userGroupId,
-            BulkPassStatus bulkPassStatus,
+            BulkPassStatus status,
+            Integer count,
+            LocalDateTime startedAt,
+            LocalDateTime endedAt
+    ) {
+        return new BulkPassEntity(
+                packageEntity,
+                userGroupId,
+                status,
+                count,
+                startedAt,
+                endedAt
+        );
+    }
+
+    public static BulkPassEntity of(
+            PackageEntity packageEntity,
+            String userGroupId,
+            BulkPassStatus status,
             LocalDateTime startedAt
     ) {
         return new BulkPassEntity(
           packageEntity,
           userGroupId,
-          bulkPassStatus,
+          status,
           null,
           startedAt,
           null
         );
     }
+
 }
